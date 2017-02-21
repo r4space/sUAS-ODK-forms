@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>MultirotorPreCheck01</h:title>
+    <model>
+      <instance>
+        <ODK_PreFlight_Multirotor_CL id="CL_V01">
+          <Date/>
+          <Meta_Time/>
+          <Device_ID/>
+          <Propulsion>
+            <Props/>
+            <Motors/>
+            <Motor_housing/>
+          </Propulsion>
+          <Airframe_Structure>
+            <Airframe/>
+            <Markings/>
+            <Landing_gear/>
+            <Control_Sys/>
+          </Airframe_Structure>
+          <Electronics>
+            <Avionics/>
+            <Calibration/>
+            <TXRX/>
+            <GCS/>
+            <CC/>
+            <GPS/>
+            <Safe/>
+            <Bat/>
+            <Sensors/>
+          </Electronics>
+          <Ground_Survey/>
+          <Run_up/>
+          <ACK/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </ODK_PreFlight_Multirotor_CL>
+      </instance>
+      <bind jr:preload="date" jr:preloadParams="today" nodeset="/ODK_PreFlight_Multirotor_CL/Date" type="date"/>
+      <bind constraint="1" jr:preload="timestamp" jr:preloadParams="start" nodeset="/ODK_PreFlight_Multirotor_CL/Meta_Time" type="dateTime"/>
+      <bind jr:preload="property" jr:preloadParams="deviceid" nodeset="/ODK_PreFlight_Multirotor_CL/Device_ID" type="string"/>
+      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Propulsion/Props" required="true()" type="string"/>
+      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Propulsion/Motors" required="true()" type="string"/>
+      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Propulsion/Motor_housing" required="true()" type="string"/>
+      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Airframe_Structure/Airframe" type="string"/>
+      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Airframe_Structure/Markings" required="true()" type="string"/>
+      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Airframe_Structure/Landing_gear" required="true()" type="string"/>
+      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Airframe_Structure/Control_Sys" required="true()" type="string"/>
+      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Electronics/Avionics" required="true()" type="string"/>
+      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Electronics/Calibration" required="true()" type="string"/>
+      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Electronics/TXRX" required="true()" type="string"/>
+      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Electronics/GCS" required="true()" type="string"/>
+      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Electronics/CC" required="true()" type="string"/>
+      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Electronics/GPS" required="true()" type="string"/>
+      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Electronics/Safe" required="true()" type="string"/>
+      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Electronics/Bat" required="true()" type="string"/>
+      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Electronics/Sensors" required="true()" type="string"/>
+      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Ground_Survey" required="true()" type="string"/>
+      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Run_up" required="true()" type="string"/>
+      <bind nodeset="/ODK_PreFlight_Multirotor_CL/ACK" required="true()" type="string"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/ODK_PreFlight_Multirotor_CL/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body>
+    <group appearance="Field-list" ref="/ODK_PreFlight_Multirotor_CL/Propulsion">
+      <label>Propulsion System</label>
+      <trigger ref="/ODK_PreFlight_Multirotor_CL/Propulsion/Props">
+        <label>Props</label>
+        <hint>Visually inspect the condition of all props</hint>
+      </trigger>
+      <trigger ref="/ODK_PreFlight_Multirotor_CL/Propulsion/Motors">
+        <label>Motors</label>
+        <hint>Inspect all motors for debri or loose connections</hint>
+      </trigger>
+      <trigger ref="/ODK_PreFlight_Multirotor_CL/Propulsion/Motor_housing">
+        <label>Motor housing</label>
+        <hint>Visually inspect all motor housings and ensure motors are securly attached</hint>
+      </trigger>
+    </group>
+    <group appearance="Field-list" ref="/ODK_PreFlight_Multirotor_CL/Airframe_Structure">
+      <label>Airframe Structure</label>
+      <trigger ref="/ODK_PreFlight_Multirotor_CL/Airframe_Structure/Airframe">
+        <label>Airframe</label>
+        <hint>Inspect the airframe structure, including undercarriage, all flight control surfaces and linkages</hint>
+      </trigger>
+      <trigger ref="/ODK_PreFlight_Multirotor_CL/Airframe_Structure/Markings">
+        <label>Markings</label>
+        <hint>Inspect registration markings for proper display and legibility</hint>
+      </trigger>
+      <trigger ref="/ODK_PreFlight_Multirotor_CL/Airframe_Structure/Landing_gear">
+        <label>Landing gear</label>
+        <hint>Inspect moveable control surface(s), including airframe attachment point(s)</hint>
+      </trigger>
+      <trigger ref="/ODK_PreFlight_Multirotor_CL/Airframe_Structure/Control_Sys">
+        <label>Control Systems</label>
+        <hint>Verify all systems (e.g. aircraft, control unit) have an adequate energy supply for the intended operation and are functioning properly</hint>
+      </trigger>
+    </group>
+    <group appearance="Field-list" ref="/ODK_PreFlight_Multirotor_CL/Electronics">
+      <label>Electronics</label>
+      <trigger ref="/ODK_PreFlight_Multirotor_CL/Electronics/Avionics">
+        <label>Avionics</label>
+        <hint>Inspect the avionics, including control link transceiver, communication/navigation equipment and antenna(s)</hint>
+      </trigger>
+      <trigger ref="/ODK_PreFlight_Multirotor_CL/Electronics/Calibration">
+        <label>Calibration</label>
+        <hint>Calibrate UAS compass prior to any flight</hint>
+      </trigger>
+      <trigger ref="/ODK_PreFlight_Multirotor_CL/Electronics/TXRX">
+        <label>Transiever</label>
+        <hint>Inspect the control link transceiver, communication/navigation data link transceiver, and antenna(s) Check that the display panel, if used, is functioning properly</hint>
+      </trigger>
+      <trigger ref="/ODK_PreFlight_Multirotor_CL/Electronics/GCS">
+        <label>Ground Control System</label>
+        <hint>Check ground support equipment, including takeoff and landing systems, for proper operation</hint>
+      </trigger>
+      <trigger ref="/ODK_PreFlight_Multirotor_CL/Electronics/CC">
+        <label>Control and Coms link</label>
+        <hint>Check that control link correct functionality is established between the aircraft and the control station Check for correct movement of control surfaces using the control station</hint>
+      </trigger>
+      <trigger ref="/ODK_PreFlight_Multirotor_CL/Electronics/GPS">
+        <label>GPS</label>
+        <hint>Verify communication with UAS and that the UAS has acquired GPS location from at least 4 satellites Start the UAS propellers to inspect for any imbalance or irregular operation</hint>
+      </trigger>
+      <trigger ref="/ODK_PreFlight_Multirotor_CL/Electronics/Safe">
+        <label>Safe</label>
+        <hint>Check flight termination system, if installed</hint>
+      </trigger>
+      <trigger ref="/ODK_PreFlight_Multirotor_CL/Electronics/Bat">
+        <label>Battery</label>
+        <hint>Check battery levels for the aircraft and control station</hint>
+      </trigger>
+      <trigger ref="/ODK_PreFlight_Multirotor_CL/Electronics/Sensors">
+        <label>Sensors</label>
+        <hint>Check that any equipment, such as a camera, is securely attached</hint>
+      </trigger>
+    </group>
+    <trigger ref="/ODK_PreFlight_Multirotor_CL/Ground_Survey">
+      <label>Take off and Landing area</label>
+      <hint>If required by flight path walk through, verify any noted obstructions that may interfere with the UAS</hint>
+    </trigger>
+    <trigger ref="/ODK_PreFlight_Multirotor_CL/Run_up">
+      <label>Run up checks</label>
+      <hint>At a controlled low altitude, fly within range of any interference and recheck all controls and stability</hint>
+    </trigger>
+    <trigger ref="/ODK_PreFlight_Multirotor_CL/ACK">
+      <label>Sign log</label>
+      <hint>If the above is correct sign the log by acknowledging it here.</hint>
+    </trigger>
+  </h:body>
+</h:html>

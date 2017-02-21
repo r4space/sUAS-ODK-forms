@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>PilotLogBook01</h:title>
+    <model>
+      <instance>
+        <ODK_Pilot_Log_Book id="V01">
+          <Date/>
+          <Meta_Time/>
+          <Device_ID/>
+          <PIC/>
+          <Dual_Pilot>
+            <PIC1/>
+            <CPIC>Self</CPIC>
+          </Dual_Pilot>
+          <RPA>
+            <RPA_type/>
+            <Engines/>
+          </RPA>
+          <Flight>
+            <Flight_Time/>
+            <Remark/>
+          </Flight>
+          <Optional>
+            <geopoint_test/>
+            <Site_image/>
+          </Optional>
+          <Summary>
+            <SUM_PIC1/>
+            <SUM_CPIC/>
+            <SUM_PIC/>
+            <SUM_FT/>
+          </Summary>
+          <Summary_continued>
+            <SUM_RPA/>
+            <SUM_Date/>
+            <ack/>
+          </Summary_continued>
+          <meta>
+            <instanceID/>
+          </meta>
+        </ODK_Pilot_Log_Book>
+      </instance>
+      <bind jr:preload="date" jr:preloadParams="today" nodeset="/ODK_Pilot_Log_Book/Date" type="date"/>
+      <bind jr:preload="timestamp" jr:preloadParams="start" nodeset="/ODK_Pilot_Log_Book/Meta_Time" type="dateTime"/>
+      <bind jr:preload="property" jr:preloadParams="deviceid" nodeset="/ODK_Pilot_Log_Book/Device_ID" type="string"/>
+      <bind nodeset="/ODK_Pilot_Log_Book/PIC" required="true()" type="select1"/>
+      <bind nodeset="/ODK_Pilot_Log_Book/Dual_Pilot" relevant=" /ODK_Pilot_Log_Book/PIC =2"/>
+      <bind nodeset="/ODK_Pilot_Log_Book/Dual_Pilot/PIC1" required="true()" type="string"/>
+      <bind nodeset="/ODK_Pilot_Log_Book/Dual_Pilot/CPIC" required="true()" type="string"/>
+      <bind nodeset="/ODK_Pilot_Log_Book/RPA/RPA_type" required="true()" type="select1"/>
+      <bind nodeset="/ODK_Pilot_Log_Book/RPA/Engines" required="true()" type="select1"/>
+      <bind constraint=" /ODK_Pilot_Log_Book/Flight/Flight_Time &lt;=1.0" jr:constraintMsg="Flight time is expressed in decimal fractions of 1hr (&lt;1)" nodeset="/ODK_Pilot_Log_Book/Flight/Flight_Time" required="true()" type="decimal"/>
+      <bind nodeset="/ODK_Pilot_Log_Book/Flight/Remark" required="true()" type="string"/>
+      <bind nodeset="/ODK_Pilot_Log_Book/Optional/geopoint_test" type="geopoint"/>
+      <bind nodeset="/ODK_Pilot_Log_Book/Optional/Site_image" type="binary"/>
+      <bind nodeset="/ODK_Pilot_Log_Book/Summary/SUM_PIC1" readonly="true()" relevant=" /ODK_Pilot_Log_Book/PIC =2" type="string"/>
+      <bind nodeset="/ODK_Pilot_Log_Book/Summary/SUM_CPIC" readonly="true()" relevant=" /ODK_Pilot_Log_Book/PIC =2" type="string"/>
+      <bind nodeset="/ODK_Pilot_Log_Book/Summary/SUM_PIC" readonly="true()" relevant="not( /ODK_Pilot_Log_Book/PIC =2)" type="string"/>
+      <bind nodeset="/ODK_Pilot_Log_Book/Summary/SUM_FT" readonly="true()" type="string"/>
+      <bind nodeset="/ODK_Pilot_Log_Book/Summary_continued/SUM_RPA" readonly="true()" type="string"/>
+      <bind nodeset="/ODK_Pilot_Log_Book/Summary_continued/SUM_Date" readonly="true()" type="string"/>
+      <bind nodeset="/ODK_Pilot_Log_Book/Summary_continued/ack" required="true()" type="string"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/ODK_Pilot_Log_Book/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body>
+    <select1 ref="/ODK_Pilot_Log_Book/PIC">
+      <label>PIC</label>
+      <hint>Pilot In Command</hint>
+      <item>
+        <label>self</label>
+        <value>self</value>
+      </item>
+      <item>
+        <label>Dual</label>
+        <value>2</value>
+      </item>
+    </select1>
+    <group appearance="field-list" ref="/ODK_Pilot_Log_Book/Dual_Pilot">
+      <label>Dual Pilot</label>
+      <input ref="/ODK_Pilot_Log_Book/Dual_Pilot/PIC1">
+        <label>PIC when flying Dual</label>
+        <hint>Instructor name</hint>
+      </input>
+      <input ref="/ODK_Pilot_Log_Book/Dual_Pilot/CPIC">
+        <label>Co-Pilot</label>
+        <hint>Instructee name</hint>
+      </input>
+    </group>
+    <group appearance="field-list" ref="/ODK_Pilot_Log_Book/RPA">
+      <label>RPA</label>
+      <select1 ref="/ODK_Pilot_Log_Book/RPA/RPA_type">
+        <label>RPA type</label>
+        <item>
+          <label>Multirotor</label>
+          <value>Multirotor</value>
+        </item>
+        <item>
+          <label>Fixedwing</label>
+          <value>Fixedwing</value>
+        </item>
+        <item>
+          <label>Helicopter</label>
+          <value>Helicopter</value>
+        </item>
+      </select1>
+      <select1 ref="/ODK_Pilot_Log_Book/RPA/Engines">
+        <label>Engines</label>
+        <hint>If failure of 1 engine will cause catastrophic failure then it’s a single engine aircraft</hint>
+        <item>
+          <label>Single engine</label>
+          <value>Single_engine</value>
+        </item>
+        <item>
+          <label>Multi engine</label>
+          <value>Multi_engine</value>
+        </item>
+      </select1>
+    </group>
+    <group appearance="field-list" ref="/ODK_Pilot_Log_Book/Flight">
+      <label>Flight</label>
+      <input ref="/ODK_Pilot_Log_Book/Flight/Flight_Time">
+        <label>Flight time (decimal hrs)</label>
+        <hint>Flight time in decimal hours</hint>
+      </input>
+      <input ref="/ODK_Pilot_Log_Book/Flight/Remark">
+        <label>Remark</label>
+        <hint>Purpose of flight</hint>
+      </input>
+    </group>
+    <group appearance="field-list" ref="/ODK_Pilot_Log_Book/Optional">
+      <label>Optional additional parameters</label>
+      <input ref="/ODK_Pilot_Log_Book/Optional/geopoint_test">
+        <label>Record your location co-ordinates (optional)</label>
+      </input>
+      <upload mediatype="image/*" ref="/ODK_Pilot_Log_Book/Optional/Site_image">
+        <label>Take a picture of the flight site and weather conditions (optional)</label>
+      </upload>
+    </group>
+    <group appearance="field-list" ref="/ODK_Pilot_Log_Book/Summary">
+      <label>Summary</label>
+      <input ref="/ODK_Pilot_Log_Book/Summary/SUM_PIC1">
+        <label>PIC1 <output value=" /ODK_Pilot_Log_Book/Dual_Pilot/PIC1 "/></label></input>
+      <input ref="/ODK_Pilot_Log_Book/Summary/SUM_CPIC">
+        <label>CPIC <output value=" /ODK_Pilot_Log_Book/Dual_Pilot/CPIC "/></label></input>
+      <input ref="/ODK_Pilot_Log_Book/Summary/SUM_PIC">
+        <label>PIC <output value=" /ODK_Pilot_Log_Book/PIC "/></label></input>
+      <input ref="/ODK_Pilot_Log_Book/Summary/SUM_FT">
+        <label><output value=" /ODK_Pilot_Log_Book/Flight/Flight_Time "/>hrs</label></input>
+    </group>
+    <group appearance="field-list" ref="/ODK_Pilot_Log_Book/Summary_continued">
+      <label>Summary continued</label>
+      <input ref="/ODK_Pilot_Log_Book/Summary_continued/SUM_RPA">
+        <label><output value=" /ODK_Pilot_Log_Book/RPA/RPA_type "/></label>
+      </input>
+      <input ref="/ODK_Pilot_Log_Book/Summary_continued/SUM_Date">
+        <label><output value=" /ODK_Pilot_Log_Book/Date "/></label>
+      </input>
+      <trigger ref="/ODK_Pilot_Log_Book/Summary_continued/ack">
+        <label>Sign log entry</label>
+        <hint>Checking this box acts as a digital signature that the details supplied here are correct</hint>
+      </trigger>
+    </group>
+  </h:body>
+</h:html>
