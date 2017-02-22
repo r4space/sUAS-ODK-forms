@@ -20,11 +20,10 @@ In brief, ODK allows you to make and fill out custom forms on an android/iOS pho
 
 ###Step2: Try entering data
 1. In ODK app > Main Menu > "Get Blank Form" > download which ever you want
-2.  Main Menu > "Fill Blank Form" > select which ever you wish and fill it in by swiping left
+2. Main Menu > "Fill Blank Form" > select which ever you wish and fill it in by swiping left
 3. Name and save form
 4. Main Menu > "Send Finalised Form"  to submit it to the Aggregate server
-![](./images/Android4s.png) 
-  ![](./images/Android2s.png)     ![](./images/Android1s.png) 
+5. ![](./images/Android4s.png) ![](./images/Android2s.png) ![](./images/Android1s.png)
 
 ###Step3: Visualise and use data in Aggregate
 ![](./images/Aggregate1.png) 
