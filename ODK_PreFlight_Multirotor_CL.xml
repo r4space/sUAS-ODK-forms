@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <h:head>
-    <h:title>MultirotorPreCheck01</h:title>
+    <h:title>MultirotorPreCheck</h:title>
     <model>
       <instance>
         <ODK_PreFlight_Multirotor_CL id="CL_V01">
@@ -19,17 +19,21 @@
             <Landing_gear/>
             <Control_Sys/>
           </Airframe_Structure>
-          <Electronics>
+          <Electronics1>
             <Avionics/>
             <Calibration/>
             <TXRX/>
+          </Electronics1>
+          <Electronics2>
             <GCS/>
             <CC/>
             <GPS/>
+          </Electronics2>
+          <Electronics3>
             <Safe/>
             <Bat/>
             <Sensors/>
-          </Electronics>
+          </Electronics3>
           <Ground_Survey/>
           <Run_up/>
           <ACK/>
@@ -48,15 +52,15 @@
       <bind nodeset="/ODK_PreFlight_Multirotor_CL/Airframe_Structure/Markings" required="true()" type="string"/>
       <bind nodeset="/ODK_PreFlight_Multirotor_CL/Airframe_Structure/Landing_gear" required="true()" type="string"/>
       <bind nodeset="/ODK_PreFlight_Multirotor_CL/Airframe_Structure/Control_Sys" required="true()" type="string"/>
-      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Electronics/Avionics" required="true()" type="string"/>
-      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Electronics/Calibration" required="true()" type="string"/>
-      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Electronics/TXRX" required="true()" type="string"/>
-      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Electronics/GCS" required="true()" type="string"/>
-      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Electronics/CC" required="true()" type="string"/>
-      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Electronics/GPS" required="true()" type="string"/>
-      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Electronics/Safe" required="true()" type="string"/>
-      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Electronics/Bat" required="true()" type="string"/>
-      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Electronics/Sensors" required="true()" type="string"/>
+      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Electronics1/Avionics" required="true()" type="string"/>
+      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Electronics1/Calibration" required="true()" type="string"/>
+      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Electronics1/TXRX" required="true()" type="string"/>
+      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Electronics2/GCS" required="true()" type="string"/>
+      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Electronics2/CC" required="true()" type="string"/>
+      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Electronics2/GPS" required="true()" type="string"/>
+      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Electronics3/Safe" required="true()" type="string"/>
+      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Electronics3/Bat" required="true()" type="string"/>
+      <bind nodeset="/ODK_PreFlight_Multirotor_CL/Electronics3/Sensors" required="true()" type="string"/>
       <bind nodeset="/ODK_PreFlight_Multirotor_CL/Ground_Survey" required="true()" type="string"/>
       <bind nodeset="/ODK_PreFlight_Multirotor_CL/Run_up" required="true()" type="string"/>
       <bind nodeset="/ODK_PreFlight_Multirotor_CL/ACK" required="true()" type="string"/>
@@ -98,41 +102,47 @@
         <hint>Verify all systems (e.g. aircraft, control unit) have an adequate energy supply for the intended operation and are functioning properly</hint>
       </trigger>
     </group>
-    <group appearance="Field-list" ref="/ODK_PreFlight_Multirotor_CL/Electronics">
-      <label>Electronics</label>
-      <trigger ref="/ODK_PreFlight_Multirotor_CL/Electronics/Avionics">
+    <group appearance="Field-list" ref="/ODK_PreFlight_Multirotor_CL/Electronics1">
+      <label>Electronics1</label>
+      <trigger ref="/ODK_PreFlight_Multirotor_CL/Electronics1/Avionics">
         <label>Avionics</label>
         <hint>Inspect the avionics, including control link transceiver, communication/navigation equipment and antenna(s)</hint>
       </trigger>
-      <trigger ref="/ODK_PreFlight_Multirotor_CL/Electronics/Calibration">
+      <trigger ref="/ODK_PreFlight_Multirotor_CL/Electronics1/Calibration">
         <label>Calibration</label>
         <hint>Calibrate UAS compass prior to any flight</hint>
       </trigger>
-      <trigger ref="/ODK_PreFlight_Multirotor_CL/Electronics/TXRX">
+      <trigger ref="/ODK_PreFlight_Multirotor_CL/Electronics1/TXRX">
         <label>Transiever</label>
         <hint>Inspect the control link transceiver, communication/navigation data link transceiver, and antenna(s) Check that the display panel, if used, is functioning properly</hint>
       </trigger>
-      <trigger ref="/ODK_PreFlight_Multirotor_CL/Electronics/GCS">
+    </group>
+    <group appearance="Field-list" ref="/ODK_PreFlight_Multirotor_CL/Electronics2">
+      <label>Electronics2</label>
+      <trigger ref="/ODK_PreFlight_Multirotor_CL/Electronics2/GCS">
         <label>Ground Control System</label>
         <hint>Check ground support equipment, including takeoff and landing systems, for proper operation</hint>
       </trigger>
-      <trigger ref="/ODK_PreFlight_Multirotor_CL/Electronics/CC">
+      <trigger ref="/ODK_PreFlight_Multirotor_CL/Electronics2/CC">
         <label>Control and Coms link</label>
         <hint>Check that control link correct functionality is established between the aircraft and the control station Check for correct movement of control surfaces using the control station</hint>
       </trigger>
-      <trigger ref="/ODK_PreFlight_Multirotor_CL/Electronics/GPS">
+      <trigger ref="/ODK_PreFlight_Multirotor_CL/Electronics2/GPS">
         <label>GPS</label>
         <hint>Verify communication with UAS and that the UAS has acquired GPS location from at least 4 satellites Start the UAS propellers to inspect for any imbalance or irregular operation</hint>
       </trigger>
-      <trigger ref="/ODK_PreFlight_Multirotor_CL/Electronics/Safe">
+    </group>
+    <group appearance="Field-list" ref="/ODK_PreFlight_Multirotor_CL/Electronics3">
+      <label>Electronics3</label>
+      <trigger ref="/ODK_PreFlight_Multirotor_CL/Electronics3/Safe">
         <label>Safe</label>
         <hint>Check flight termination system, if installed</hint>
       </trigger>
-      <trigger ref="/ODK_PreFlight_Multirotor_CL/Electronics/Bat">
+      <trigger ref="/ODK_PreFlight_Multirotor_CL/Electronics3/Bat">
         <label>Battery</label>
         <hint>Check battery levels for the aircraft and control station</hint>
       </trigger>
-      <trigger ref="/ODK_PreFlight_Multirotor_CL/Electronics/Sensors">
+      <trigger ref="/ODK_PreFlight_Multirotor_CL/Electronics3/Sensors">
         <label>Sensors</label>
         <hint>Check that any equipment, such as a camera, is securely attached</hint>
       </trigger>

@@ -4,7 +4,7 @@
     <h:title>BatteryLogBook</h:title>
     <model>
       <instance>
-        <ODK_Battery_log id="BLB_v01">
+        <ODK_Battery_log id="BLB_V01">
           <Date/>
           <Meta_Time/>
           <Device_ID/>
@@ -19,24 +19,24 @@
             <PC>no</PC>
           </Start>
           <StCellV>
-            <S1/>
-            <S2/>
-            <S3/>
-            <S4/>
-            <S5/>
-            <S6/>
+            <S1>3.7</S1>
+            <S2>3.7</S2>
+            <S3>3.7</S3>
+            <S4>3.7</S4>
+            <S5>3.7</S5>
+            <S6>3.7</S6>
           </StCellV>
           <End>
             <ECAP/>
             <EV>${CellCount}*3.7</EV>
           </End>
           <EdCellV>
-            <S1/>
-            <S2/>
-            <S3/>
-            <S4/>
-            <S5/>
-            <S6/>
+            <S1>3.2</S1>
+            <S2>3.2</S2>
+            <S3>3.2</S3>
+            <S4>3.2</S4>
+            <S5>3.2</S5>
+            <S6>3.2</S6>
           </EdCellV>
           <meta>
             <instanceID/>
@@ -60,8 +60,8 @@
       <bind nodeset="/ODK_Battery_log/StCellV/S4" relevant=" /ODK_Battery_log/Basics/CellCount &gt;3" required="true()" type="decimal"/>
       <bind nodeset="/ODK_Battery_log/StCellV/S5" relevant=" /ODK_Battery_log/Basics/CellCount &gt;4" required="true()" type="decimal"/>
       <bind nodeset="/ODK_Battery_log/StCellV/S6" relevant=" /ODK_Battery_log/Basics/CellCount &gt;5" required="true()" type="decimal"/>
-      <bind nodeset="/ODK_Battery_log/End/ECAP" type="int"/>
-      <bind nodeset="/ODK_Battery_log/End/EV" required="true()" type="decimal"/>
+      <bind constraint=".&lt; /ODK_Battery_log/Start/SCAP " jr:constraintMsg="End capacity must be lower than starting capacity  /ODK_Battery_log/Start/SCAP " nodeset="/ODK_Battery_log/End/ECAP" type="int"/>
+      <bind constraint=".&lt; /ODK_Battery_log/Start/SV " jr:constraintMsg="End Voltage must be lower than starting Voltage  /ODK_Battery_log/Start/SV " nodeset="/ODK_Battery_log/End/EV" required="true()" type="decimal"/>
       <bind nodeset="/ODK_Battery_log/EdCellV" relevant=" /ODK_Battery_log/Start/PC =1"/>
       <bind nodeset="/ODK_Battery_log/EdCellV/S1" required="true()" type="decimal"/>
       <bind nodeset="/ODK_Battery_log/EdCellV/S2" relevant=" /ODK_Battery_log/Basics/CellCount &gt;1" required="true()" type="decimal"/>
@@ -114,7 +114,7 @@
           <value>5</value>
         </item>
         <item>
-          <label>S5</label>
+          <label>S6</label>
           <value>6</value>
         </item>
       </select1>
@@ -142,27 +142,27 @@
     </group>
     <group appearance="field-list" ref="/ODK_Battery_log/StCellV">
       <label>Cell Voltages</label>
-      <input appearance="3.7" ref="/ODK_Battery_log/StCellV/S1">
+      <input ref="/ODK_Battery_log/StCellV/S1">
         <label>S1</label>
         <hint>V</hint>
       </input>
-      <input appearance="3.7" ref="/ODK_Battery_log/StCellV/S2">
+      <input ref="/ODK_Battery_log/StCellV/S2">
         <label>S2</label>
         <hint>V</hint>
       </input>
-      <input appearance="3.7" ref="/ODK_Battery_log/StCellV/S3">
+      <input ref="/ODK_Battery_log/StCellV/S3">
         <label>S3</label>
         <hint>V</hint>
       </input>
-      <input appearance="3.7" ref="/ODK_Battery_log/StCellV/S4">
+      <input ref="/ODK_Battery_log/StCellV/S4">
         <label>S4</label>
         <hint>V</hint>
       </input>
-      <input appearance="3.7" ref="/ODK_Battery_log/StCellV/S5">
+      <input ref="/ODK_Battery_log/StCellV/S5">
         <label>S5</label>
         <hint>V</hint>
       </input>
-      <input appearance="3.7" ref="/ODK_Battery_log/StCellV/S6">
+      <input ref="/ODK_Battery_log/StCellV/S6">
         <label>S6</label>
         <hint>V</hint>
       </input>
@@ -178,27 +178,27 @@
     </group>
     <group appearance="field-list" ref="/ODK_Battery_log/EdCellV">
       <label>Cell Voltages</label>
-      <input appearance="3.2" ref="/ODK_Battery_log/EdCellV/S1">
+      <input ref="/ODK_Battery_log/EdCellV/S1">
         <label>S1</label>
         <hint>V</hint>
       </input>
-      <input appearance="3.2" ref="/ODK_Battery_log/EdCellV/S2">
+      <input ref="/ODK_Battery_log/EdCellV/S2">
         <label>S2</label>
         <hint>V</hint>
       </input>
-      <input appearance="3.2" ref="/ODK_Battery_log/EdCellV/S3">
+      <input ref="/ODK_Battery_log/EdCellV/S3">
         <label>S3</label>
         <hint>V</hint>
       </input>
-      <input appearance="3.2" ref="/ODK_Battery_log/EdCellV/S4">
+      <input ref="/ODK_Battery_log/EdCellV/S4">
         <label>S4</label>
         <hint>V</hint>
       </input>
-      <input appearance="3.2" ref="/ODK_Battery_log/EdCellV/S5">
+      <input ref="/ODK_Battery_log/EdCellV/S5">
         <label>S5</label>
         <hint>V</hint>
       </input>
-      <input appearance="3.2" ref="/ODK_Battery_log/EdCellV/S6">
+      <input ref="/ODK_Battery_log/EdCellV/S6">
         <label>S6</label>
         <hint>V</hint>
       </input>

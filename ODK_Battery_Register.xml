@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>BatteryRegistration</h:title>
+    <model>
+      <instance>
+        <ODK_Battery_Register id="BR_V01">
+          <Date/>
+          <Meta_Time/>
+          <Device_ID/>
+          <BATID/>
+          <Pdate/>
+          <model/>
+          <CAP/>
+          <Cmax/>
+          <C/>
+          <CellCount/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </ODK_Battery_Register>
+      </instance>
+      <bind jr:preload="date" jr:preloadParams="today" nodeset="/ODK_Battery_Register/Date" type="date"/>
+      <bind jr:preload="timestamp" jr:preloadParams="start" nodeset="/ODK_Battery_Register/Meta_Time" type="dateTime"/>
+      <bind jr:preload="property" jr:preloadParams="deviceid" nodeset="/ODK_Battery_Register/Device_ID" type="string"/>
+      <bind nodeset="/ODK_Battery_Register/BATID" required="true()" type="string"/>
+      <bind nodeset="/ODK_Battery_Register/Pdate" required="true()" type="date"/>
+      <bind nodeset="/ODK_Battery_Register/model" required="false()" type="string"/>
+      <bind nodeset="/ODK_Battery_Register/CAP" required="true()" type="int"/>
+      <bind nodeset="/ODK_Battery_Register/Cmax" required="false()" type="int"/>
+      <bind nodeset="/ODK_Battery_Register/C" required="true()" type="int"/>
+      <bind nodeset="/ODK_Battery_Register/CellCount" required="true()" type="select"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/ODK_Battery_Register/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body>
+    <input ref="/ODK_Battery_Register/BATID">
+      <label>Battery ID</label>
+      <hint>Assign a code to this battery and mark it as such</hint>
+    </input>
+    <input ref="/ODK_Battery_Register/Pdate">
+      <label>Purchase Date</label>
+    </input>
+    <input ref="/ODK_Battery_Register/model">
+      <label>Model</label>
+      <hint>Enter battery manufacture model name</hint>
+    </input>
+    <input ref="/ODK_Battery_Register/CAP">
+      <label>Capacity in mAhrs</label>
+    </input>
+    <input ref="/ODK_Battery_Register/Cmax">
+      <label>C max rating</label>
+    </input>
+    <input ref="/ODK_Battery_Register/C">
+      <label>C nominal rating</label>
+    </input>
+    <select ref="/ODK_Battery_Register/CellCount">
+      <label>Cell Count</label>
+      <item>
+        <label>S1</label>
+        <value>1</value>
+      </item>
+      <item>
+        <label>S2</label>
+        <value>2</value>
+      </item>
+      <item>
+        <label>S3</label>
+        <value>3</value>
+      </item>
+      <item>
+        <label>S4</label>
+        <value>4</value>
+      </item>
+      <item>
+        <label>S5</label>
+        <value>5</value>
+      </item>
+      <item>
+        <label>S6</label>
+        <value>6</value>
+      </item>
+    </select>
+  </h:body>
+</h:html>
