@@ -13,7 +13,7 @@ In brief, ODK allows you to make and fill out custom forms on an android/iOS pho
 ###Step1: Setup your phone
 1. Install ODK on your phone (just search the play)
 2. Configure ODK on your phone to connect to **my** server hosting these example forms:
--- In the app go t "General Settings" > "Configure platform settings" > URL
+-- In the app go to "General Settings" > "Configure platform settings" > URL
 -- Paste: http://138.68.56.54:8080/ODKAggregate/
 ![](./images/Android3s.png) 
 
@@ -34,8 +34,8 @@ If you liked what you saw the next steps to having your own system are:
 1. Setup [Aggregate](https://opendatakit.org/use/aggregate/) Aggregate on a internet accessible server
 2. Customise a form to your own needs, see:
 - The ODK example form [here](https://opendatakit.org/wp-content/uploads/2013/06/sample_xlsform.xls) 
-- The xml form sytax documentation [here](http://xlsform.org/)
-3. Create a form out of a xls document by uploading it [here](http://opendatakit.org/xiframe/) and downloading the resulting xml form.
+- The xls form sytax documentation is [here](http://xlsform.org/)
+3. Create an xml form out of a xls document by uploading it [here](http://opendatakit.org/xiframe/) and downloading the resulting xml form.
 ![](./images/Convert1.png) 
 4. Upload your custom xml form to your aggregate server and start capturing data.
 
