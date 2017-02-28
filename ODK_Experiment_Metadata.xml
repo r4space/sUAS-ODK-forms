@@ -1,0 +1,241 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>Experiment_log</h:title>
+    <model>
+      <instance>
+        <ODK_Experiment_Metadata id="EXP_V01">
+          <Date/>
+          <Meta_Time/>
+          <Device_ID/>
+          <Weather>
+            <humidity/>
+            <WindKts/>
+            <WindDir/>
+            <Temp/>
+            <IRR/>
+            <Clouds_per/>
+            <NTS/>
+          </Weather>
+          <Details>
+            <Site/>
+            <GEO/>
+            <FLT_TM/>
+            <FLT_PIC/>
+            <FLT_LIC/>
+            <sUAS/>
+            <FLT_TYP/>
+          </Details>
+          <DSCRT_Sensor_repeat jr:template="">
+            <sensorID/>
+            <C_date/>
+            <TrigS/>
+            <Sfreq/>
+          </DSCRT_Sensor_repeat>
+          <IMG_Sensor_repeat jr:template="">
+            <sensorID/>
+            <C_date/>
+            <TrigI/>
+            <Sfreq/>
+            <FWOVLP/>
+            <SDOVLP/>
+            <ALT/>
+          </IMG_Sensor_repeat>
+          <meta>
+            <instanceID/>
+          </meta>
+        </ODK_Experiment_Metadata>
+      </instance>
+      <bind jr:preload="date" jr:preloadParams="today" nodeset="/ODK_Experiment_Metadata/Date" type="date"/>
+      <bind jr:preload="timestamp" jr:preloadParams="start" nodeset="/ODK_Experiment_Metadata/Meta_Time" type="dateTime"/>
+      <bind jr:preload="property" jr:preloadParams="deviceid" nodeset="/ODK_Experiment_Metadata/Device_ID" type="string"/>
+      <bind nodeset="/ODK_Experiment_Metadata/Weather/humidity" type="decimal"/>
+      <bind nodeset="/ODK_Experiment_Metadata/Weather/WindKts" type="decimal"/>
+      <bind nodeset="/ODK_Experiment_Metadata/Weather/WindDir" type="decimal"/>
+      <bind nodeset="/ODK_Experiment_Metadata/Weather/Temp" type="decimal"/>
+      <bind nodeset="/ODK_Experiment_Metadata/Weather/IRR" type="decimal"/>
+      <bind nodeset="/ODK_Experiment_Metadata/Weather/Clouds_per" type="select1"/>
+      <bind nodeset="/ODK_Experiment_Metadata/Weather/NTS" type="string"/>
+      <bind nodeset="/ODK_Experiment_Metadata/Details/Site" required="true()" type="string"/>
+      <bind nodeset="/ODK_Experiment_Metadata/Details/GEO" type="geopoint"/>
+      <bind constraint=".&lt;1" jr:constraintMsg="Time must be recorded in decimal hrs, this form is limited to &lt;1hr" nodeset="/ODK_Experiment_Metadata/Details/FLT_TM" required="true()" type="decimal"/>
+      <bind nodeset="/ODK_Experiment_Metadata/Details/FLT_PIC" required="true()" type="string"/>
+      <bind nodeset="/ODK_Experiment_Metadata/Details/FLT_LIC" required="true()" type="string"/>
+      <bind nodeset="/ODK_Experiment_Metadata/Details/sUAS" required="true()" type="string"/>
+      <bind nodeset="/ODK_Experiment_Metadata/Details/FLT_TYP" required="true()" type="select1"/>
+      <bind nodeset="/ODK_Experiment_Metadata/DSCRT_Sensor_repeat/sensorID" type="string"/>
+      <bind nodeset="/ODK_Experiment_Metadata/DSCRT_Sensor_repeat/C_date" type="date"/>
+      <bind nodeset="/ODK_Experiment_Metadata/DSCRT_Sensor_repeat/TrigS" type="select1"/>
+      <bind nodeset="/ODK_Experiment_Metadata/DSCRT_Sensor_repeat/Sfreq" relevant="selected( /ODK_Experiment_Metadata/DSCRT_Sensor_repeat/TrigS , PP)" type="decimal"/>
+      <bind nodeset="/ODK_Experiment_Metadata/IMG_Sensor_repeat/sensorID" type="string"/>
+      <bind nodeset="/ODK_Experiment_Metadata/IMG_Sensor_repeat/C_date" type="date"/>
+      <bind nodeset="/ODK_Experiment_Metadata/IMG_Sensor_repeat/TrigI" type="select1"/>
+      <bind nodeset="/ODK_Experiment_Metadata/IMG_Sensor_repeat/Sfreq" relevant="selected( /ODK_Experiment_Metadata/IMG_Sensor_repeat/TrigI , PP)" type="decimal"/>
+      <bind nodeset="/ODK_Experiment_Metadata/IMG_Sensor_repeat/FWOVLP" type="decimal"/>
+      <bind nodeset="/ODK_Experiment_Metadata/IMG_Sensor_repeat/SDOVLP" type="decimal"/>
+      <bind nodeset="/ODK_Experiment_Metadata/IMG_Sensor_repeat/ALT" relevant="selected( /ODK_Experiment_Metadata/Details/FLT_TYP , Survey)" type="decimal"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/ODK_Experiment_Metadata/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body>
+    <group ref="/ODK_Experiment_Metadata/Weather">
+      <label>Weather</label>
+      <input ref="/ODK_Experiment_Metadata/Weather/humidity">
+        <label>Humidity (%)</label>
+      </input>
+      <input ref="/ODK_Experiment_Metadata/Weather/WindKts">
+        <label>Wind Speed (Kts)</label>
+      </input>
+      <input ref="/ODK_Experiment_Metadata/Weather/WindDir">
+        <label>Wind Direction (deg)</label>
+      </input>
+      <input ref="/ODK_Experiment_Metadata/Weather/Temp">
+        <label>Temperature deg (°C)</label>
+      </input>
+      <input ref="/ODK_Experiment_Metadata/Weather/IRR">
+        <label>Irradience (W/m2)</label>
+      </input>
+      <select1 ref="/ODK_Experiment_Metadata/Weather/Clouds_per">
+        <label>Clouds</label>
+        <item>
+          <label>SKC</label>
+          <value>SKC</value>
+        </item>
+        <item>
+          <label>CLR</label>
+          <value>CLR</value>
+        </item>
+        <item>
+          <label>NSC</label>
+          <value>NSC</value>
+        </item>
+        <item>
+          <label>FEW</label>
+          <value>FEW</value>
+        </item>
+        <item>
+          <label>SCT</label>
+          <value>SCT</value>
+        </item>
+        <item>
+          <label>BKN</label>
+          <value>BKN</value>
+        </item>
+        <item>
+          <label>OVC</label>
+          <value>OVC</value>
+        </item>
+        <item>
+          <label>VV</label>
+          <value>VV</value>
+        </item>
+      </select1>
+      <input ref="/ODK_Experiment_Metadata/Weather/NTS">
+        <label>Remarks</label>
+      </input>
+    </group>
+    <group ref="/ODK_Experiment_Metadata/Details">
+      <label>Details</label>
+      <input ref="/ODK_Experiment_Metadata/Details/Site">
+        <label>Site name</label>
+      </input>
+      <input ref="/ODK_Experiment_Metadata/Details/GEO">
+        <label>Ground Station Co-ordinates</label>
+      </input>
+      <input ref="/ODK_Experiment_Metadata/Details/FLT_TM">
+        <label>Flight time (hrs)</label>
+      </input>
+      <input ref="/ODK_Experiment_Metadata/Details/FLT_PIC">
+        <label>Pilot in Command</label>
+      </input>
+      <input ref="/ODK_Experiment_Metadata/Details/FLT_LIC">
+        <label>License Number</label>
+      </input>
+      <input ref="/ODK_Experiment_Metadata/Details/sUAS">
+        <label>Airframe identifier</label>
+      </input>
+      <select1 ref="/ODK_Experiment_Metadata/Details/FLT_TYP">
+        <label>Flight Type</label>
+        <item>
+          <label>Survey</label>
+          <value>Survey</value>
+        </item>
+        <item>
+          <label>Vertical Profile(s)</label>
+          <value>Vprof</value>
+        </item>
+        <item>
+          <label>Point of Interest</label>
+          <value>PTINT</value>
+        </item>
+        <item>
+          <label>Manual</label>
+          <value>MNL</value>
+        </item>
+      </select1>
+    </group>
+    <group ref="/ODK_Experiment_Metadata/DSCRT_Sensor_repeat">
+      <label>Discrete Sensor</label>
+      <repeat nodeset="/ODK_Experiment_Metadata/DSCRT_Sensor_repeat">
+        <input ref="/ODK_Experiment_Metadata/DSCRT_Sensor_repeat/sensorID">
+          <label>Sensor ID</label>
+          <hint>Unique identifier</hint>
+        </input>
+        <input ref="/ODK_Experiment_Metadata/DSCRT_Sensor_repeat/C_date">
+          <label>Calibration Date</label>
+          <hint>Last calibration date</hint>
+        </input>
+        <select1 ref="/ODK_Experiment_Metadata/DSCRT_Sensor_repeat/TrigS">
+          <label>Sample Trigger</label>
+          <item>
+            <label>GPS</label>
+            <value>GPS</value>
+          </item>
+          <item>
+            <label>Preprogrammed</label>
+            <value>PP</value>
+          </item>
+        </select1>
+        <input ref="/ODK_Experiment_Metadata/DSCRT_Sensor_repeat/Sfreq">
+          <label>Sampling frequency (Hz)</label>
+        </input>
+      </repeat>
+    </group>
+    <group ref="/ODK_Experiment_Metadata/IMG_Sensor_repeat">
+      <label>Image Sensor</label>
+      <repeat nodeset="/ODK_Experiment_Metadata/IMG_Sensor_repeat">
+        <input ref="/ODK_Experiment_Metadata/IMG_Sensor_repeat/sensorID">
+          <label>Sensor ID</label>
+          <hint>Unique identifier</hint>
+        </input>
+        <input ref="/ODK_Experiment_Metadata/IMG_Sensor_repeat/C_date">
+          <label>Calibration Date</label>
+          <hint>Last calibration date</hint>
+        </input>
+        <select1 ref="/ODK_Experiment_Metadata/IMG_Sensor_repeat/TrigI">
+          <label>Sample Trigger</label>
+          <item>
+            <label>GPS</label>
+            <value>GPS</value>
+          </item>
+          <item>
+            <label>Preprogrammed</label>
+            <value>PP</value>
+          </item>
+        </select1>
+        <input ref="/ODK_Experiment_Metadata/IMG_Sensor_repeat/Sfreq">
+          <label>Sampling frequency (Hz)</label>
+        </input>
+        <input ref="/ODK_Experiment_Metadata/IMG_Sensor_repeat/FWOVLP">
+          <label>Forward Overlap (%)</label>
+        </input>
+        <input ref="/ODK_Experiment_Metadata/IMG_Sensor_repeat/SDOVLP">
+          <label>Side Overlap (%)</label>
+        </input>
+        <input ref="/ODK_Experiment_Metadata/IMG_Sensor_repeat/ALT">
+          <label>Altitude</label>
+        </input>
+      </repeat>
+    </group>
+  </h:body>
+</h:html>
